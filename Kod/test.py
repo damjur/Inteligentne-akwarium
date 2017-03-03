@@ -1,28 +1,22 @@
 from MyControllers import FuzzyController
 
-import matplotlib.pyplot as plt
-from random import random
-from tqdm import tqdm
+def read_temp(name):
+	temp = 23000
+	try:
+		with open('/sys/bus/w1/devices/' + name + '/w1_slave') as sensor:
+			for i,line in enumerate(sensor):
+				if i==0:
+					if line.split(' ')[-1] == "NO":
+						break
+				else:
+					temp = int(line.split(' ')[-1][2:])
+	finally:
+		return temp/1000
 
-if __name__=="__main__":
-	fc = FuzzyController()
-	#fc.show(True)
-	T=[21,21,21]
-	x=[]
-	y=[]
-	for i in tqdm(range(100)):
-		k1=random()+1
-		k2=random()+1
-		k3=random()+1
-		if fc.compute(T)<0.5:
-			T=[max(21,T[0]-k1),max(21,T[0]-k2/9),max(21,T[0]-k3/36)]
-		else:
-			T=[min(100,T[0]+k1),min(100,T[0]+k2/9),min(100,T[0]+k3/36)]
-		x=x+[i]
-		y=y+[T]
-		
-	plt.figure()
-	plt.plot(x,y)
-	plt.show()
+if __name__=='__main__':
 	
-	#input('Press ENTER to exit')
+	while True:
+		print(0,read_temp('28-0416a4ac2eff'))
+		print(1,read_temp('28-0516a41864ff'))
+		print(2,read_temp('28-0916a4ac2eff'))
+				

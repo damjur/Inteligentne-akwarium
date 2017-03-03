@@ -1,20 +1,16 @@
-#zrobiæ kwargs
-
-
-
 import numpy as np
 import skfuzzy as fuzz
 import skfuzzy.control as ctrl
 
 class FuzzyController:
-	def __init__(self,T=40,T0=21,dT=10,precision=1,number=3):
+	def __init__(self,T=40,T0=23,dT=10,precision=1,number=3):
 		# T - temperatura docelowa
 		# T0 - temperatura otoczenia
 		# dT - maksymalne wachanie temperatury
-		# precision - dok³adnoœæ pomiaru
-		# number - liczba czujników
+		# precision - dokladnosc pomiaru
+		# number - liczba czujnikow
 		
-		#od uchybu temperatury otoczenia do temp. wrzenia
+
 		universe = np.arange(T0-T,100-T+precision,precision)
 		u2 = np.arange(0,1.02,0.02)
 		self.T = T
