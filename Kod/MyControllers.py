@@ -3,7 +3,7 @@ import skfuzzy as fuzz
 import skfuzzy.control as ctrl
 
 class FuzzyController:
-	def __init__(self,T=40,T0=23,dT=10,precision=1,number=3):
+	def __init__(self,T=28,T0=23,dT=1,precision=1,number=3):
 		# T - temperatura docelowa
 		# T0 - temperatura otoczenia
 		# dT - maksymalne wachanie temperatury
