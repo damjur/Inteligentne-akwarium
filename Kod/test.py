@@ -9,7 +9,9 @@ def read_temp(name, temp):
 					if line.split(' ')[-1] == "NO":
 						break
 				else:
-					temp = int(line.split(' ')[-1][2:])
+					x = int(line.split(' ')[-1][2:])
+					if 100 < x < 85000:
+						temp = x
 	finally:
 		return temp/1000
 
